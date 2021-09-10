@@ -1,19 +1,20 @@
-<h1>送信履歴</h1>
 <?php 
-
-$dsn = 'mysql:dbname=contact_form;host=localhost;charset=utf8';
-$user = 'root';
-$password = 'root';
-$pdo = new PDO($dsn, $user, $password);
+include('global_menu.php');
 $sql = "SELECT * FROM contacts";
 $stmt = $pdo->query($sql);
-foreach ($stmt as $row) {
-  echo "<strong>".$row['title']."</strong>".'<br>';
-  echo $row['content'];
-  echo "<br />";
-  echo "<br />";
-}
-
 ?>
+<h1>送信履歴</h1>
+<table>
+<?php
+foreach($stmt as $row){
+?>
+  <tr>
+    <td><?php echo "<strong>".$row['title']."</strong>"; ?></td>
+    <td><?php echo $row['content']; ?></td>
+  </tr>
 
+<?php
+}
+?>
+</table>
 <a href="./index.php">戻る</a><br>
